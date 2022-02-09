@@ -1,8 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace WebAdvert.Web.Views.Accounts
+namespace WebAdvert.Web.Models.Accounts
 {
-    public class ConfirmModel
+    public class ConfirmViewModel
     {
         [Required(ErrorMessage = "Email is required")]
         [Display(Name ="Emal")]

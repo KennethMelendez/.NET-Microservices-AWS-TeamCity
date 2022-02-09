@@ -59,9 +59,39 @@ namespace WebAdvert.Web.Controllers
             return View();
         }
 
-        public async Task<IActionResult> Confirm()
+        public async Task<IActionResult> Confirm(ConfirmViewModel model)
         {
-            var model = new ConfirmModel();
+            return View(model);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Confirm_Post(ConfirmViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = await _userManager.FindByEmailAsync(model.Email);
+                if (user == null)
+                {
+                    ModelState.AddModelError("NotFound", "A user with a given email address is not found.");
+                    return View(model);
+                }
+
+                //(_userManager as CognitoUserManager<CognitoUser>).ConfirmSignUpAsync();
+                var result = await _userManager.ConfirmEmailAsync(user, model.Code).ConfigureAwait(false);
+
+                if (result.Succeeded)
+                {
+                    return RedirectToAction("Index", "Home");
+                }
+                else
+                {
+                    foreach (var item in result.Errors)
+                    {
+                        ModelState.AddModelError(item.Code, item.Description);
+                    }
+                    return View(model);
+                }
+            }
             return View(model);
         }
     }
