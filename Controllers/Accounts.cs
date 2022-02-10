@@ -59,6 +59,7 @@ namespace WebAdvert.Web.Controllers
             return View();
         }
 
+        [HttpGet]
         public async Task<IActionResult> Confirm(ConfirmViewModel model)
         {
             return View(model);
