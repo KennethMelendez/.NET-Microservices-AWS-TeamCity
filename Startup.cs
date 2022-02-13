@@ -25,6 +25,7 @@ namespace WebAdvert.Web
         {
             services.AddCognitoIdentity(config =>
             {
+                // Todo: figure out why this isnt working
                 config.Password = new Microsoft.AspNetCore.Identity.PasswordOptions
                 {
                     RequireDigit = false,
