@@ -49,14 +49,15 @@ namespace WebAdvert.Web.Controllers
                     CognitoAttribute.Name.ToString(),
                     model.Email);
 
-                var createdUser = await _userManager.CreateAsync(user, model.Password).ConfigureAwait(false);
+                //var createdUser = await _userManager.CreateAsync(user, model.Password).ConfigureAwait(false);
                 
-                if (createdUser.Succeeded)
+                //if (createdUser.Succeeded)
+                if(true)
                 {
-                    RedirectToAction("Confirm");
+                    return RedirectToAction("Confirm");
                 }
             }
-            return View();
+            return View(model);
         }
 
         [HttpGet]
