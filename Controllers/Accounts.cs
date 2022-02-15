@@ -49,10 +49,9 @@ namespace WebAdvert.Web.Controllers
                     CognitoAttribute.Name.ToString(),
                     model.Email);
 
-                //var createdUser = await _userManager.CreateAsync(user, model.Password).ConfigureAwait(false);
+                var createdUser = await _userManager.CreateAsync(user, model.Password).ConfigureAwait(false);
                 
-                //if (createdUser.Succeeded)
-                if(true)
+                if (createdUser.Succeeded)
                 {
                     return RedirectToAction("Confirm");
                 }
