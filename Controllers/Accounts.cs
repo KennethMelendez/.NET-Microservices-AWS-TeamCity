@@ -60,13 +60,13 @@ namespace WebAdvert.Web.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Confirm(ConfirmViewModel model)
+        public async Task<IActionResult> Confirm()
         {
-            return View(model);
+            return View();
         }
 
         [HttpPost]
-        public async Task<IActionResult> Confirm_Post(ConfirmViewModel model)
+        public async Task<IActionResult> Confirm(ConfirmViewModel model)
         {
             if (ModelState.IsValid)
             {
@@ -77,8 +77,8 @@ namespace WebAdvert.Web.Controllers
                     return View(model);
                 }
 
-                //(_userManager as CognitoUserManager<CognitoUser>).ConfirmSignUpAsync();
-                var result = await _userManager.ConfirmEmailAsync(user, model.Code).ConfigureAwait(false);
+                var result = await (_userManager as CognitoUserManager<CognitoUser>).ConfirmSignUpAsync(user, model.Code, false);
+                //var result = await _userManager.ConfirmEmailAsync(user, model.Code);
 
                 if (result.Succeeded)
                 {
