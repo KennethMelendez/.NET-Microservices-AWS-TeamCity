@@ -4,6 +4,10 @@ using System.Threading.Tasks;
 
 namespace WebAdvert.Web.Service
 {
+    /// <summary>
+    ///    Creating a repository for luls
+    ///    Might change user auth to SQLServer later on idk
+    /// </summary>
     public class UserCognitoRepository : IUserCognitoRepository
     {
         private readonly SignInManager<CognitoUser> _signInManager;
