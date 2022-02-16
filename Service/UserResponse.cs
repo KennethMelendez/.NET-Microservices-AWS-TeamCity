@@ -7,7 +7,6 @@ namespace WebAdvert.Web.Service
     {
         public IdentityResult IdentityResult { get; set; }
         public CognitoUser User { get; set; }
-
         public bool Success { get; set; }
     }
 }
