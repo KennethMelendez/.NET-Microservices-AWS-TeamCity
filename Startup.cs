@@ -25,7 +25,7 @@ namespace WebAdvert.Web
         {
             services.AddCognitoIdentity(config =>
             {
-                // Todo: figure out why this isnt working
+
                 config.Password = new Microsoft.AspNetCore.Identity.PasswordOptions
                 {
                     RequireDigit = false,
@@ -37,6 +37,11 @@ namespace WebAdvert.Web
                 };
             });
 
+            // redirects to login page if not logged in
+            services.ConfigureApplicationCookie(options =>
+            {
+                options.LoginPath = "/Accounts/Login";
+            });
             services.AddControllersWithViews();
         }
 
